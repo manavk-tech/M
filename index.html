@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manav Khatana - Profile</title>
+    <style>
+        /* બેકગ્રાઉન્ડ અને બોડી સ્ટાઇલ */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        /* Glow અને Shadow ઇફેક્ટ વાળું હેડિંગ */
+        .glow-heading {
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 2px;
+            color: #fff;
+            /* Text Shadow થી Glow ઇફેક્ટ આવશે */
+            text-shadow: 0 0 10px #00d2ff, 
+                         0 0 20px #00d2ff, 
+                         0 0 40px #00d2ff, 
+                         0 0 80px #00d2ff;
+            margin-bottom: 50px;
+            animation: pulse 2s infinite alternate;
+        }
+
+        /* હેડિંગ માટે એનિમેશન */
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+
+        /* ફોટો ગોઠવવા માટેનું કન્ટેનર */
+        .image-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* દરેક ફોટોની સ્ટાઇલ અને શેડો ઇફેક્ટ */
+        .photo-card {
+            width: 250px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* ફોટો પર માઉસ લઈ જતાં (Hover) થતી ઇફેક્ટ */
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- હેડિંગ વિભાગ -->
+    <h1 class="glow-heading" id="main-heading">Manav Khatana</h1>
+
+    <!-- ફોટો વિભાગ -->
+    <div class="image-container">
+        <img src="1.png" alt="Photo 1" class="photo-card">
+        <img src="2.png" alt="Photo 2" class="photo-card">
+        <img src="3.png" alt="Photo 3" class="photo-card">
+    </div>
+
+    <!-- JavaScript વિભાગ (ઇન્ટરેક્ટિવિટી માટે) -->
+    <script>
+        // જ્યારે કોઈ ફોટો પર ક્લિક થાય ત્યારે હેડિંગનો કલર બદલાશે
+        const heading = document.getElementById('main-heading');
+        const photos = document.querySelectorAll('.photo-card');
+
+        // ગ્લો કલર્સનું લિસ્ટ
+        const glowColors = [
+            '0 0 20px #ff007f, 0 0 40px #ff007f', // પિંક
+            '0 0 20px #00ffcc, 0 0 40px #00ffcc', // નિઓન ગ્રીન
+            '0 0 20px #ff9900, 0 0 40px #ff9900'  // ઓરેન્જ
+        ];
+
+        // દરેક ફોટો પર ક્લિક ઇવેન્ટ ઉમેરી
+        photos.forEach((photo, index) => {
+            photo.addEventListener('click', () => {
+                heading.style.textShadow = glowColors[index];
+            });
+
+            // જો ફોટો લોડ ન થાય તો તે હેન્ડલ કરવા માટે (Optional)
+            photo.addEventListener('error', () => {
+                photo.src = 'https://placeholder.com';
+            });
+        });
+    </script>
+</body>
+</html>
